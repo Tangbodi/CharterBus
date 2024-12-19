@@ -4,6 +4,43 @@
 <head>
     <meta charset="utf-8">
     <title>New Age Coach Inc.</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGoLO-2hjWTE_IkNim1X_yGvw5jPNj_30&callback=initMap"
+        async defer></script>
+    <script>
+        function initMap() {
+            // Create a new map centered at a midpoint between Seattle and New York
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: { lat: 40.730610, lng: -73.935242 }  // New York coordinates as default center
+            });
+
+            // Locations array with Seattle and New York coordinates
+            var locations = [
+                { lat: 47.6097, lng: -122.3331, title: "Seattle, WA" },
+                { lat: 40.730610, lng: -73.935242, title: "New York, NY" },
+                { lat: 36.7783, lng: -119.4179, title: "California" },
+                { lat: 38.9108, lng: -75.5277, title: "Delaware" },
+                { lat: 38.8954, lng: -77.0365, title: "Washington DC" },
+                { lat: 27.9944, lng: -81.7603, title: "Florida" },
+                { lat: 40.6331, lng: -89.3985, title: "Illinois" },
+                { lat: 39.0458, lng: -76.6413, title: "Maryland" },
+                { lat: 42.4072, lng: -71.3824, title: "Massachusetts" },
+                { lat: 40.0583, lng: -74.4057, title: "New Jersey" },
+                { lat: 35.7596, lng: -79.0193, title: "North Carolina" },
+                { lat: 40.2737, lng: -76.8844, title: "Pennsylvania" }
+            ];
+
+            // Loop through the locations and place a marker for each one
+            locations.forEach(function (location) {
+                new google.maps.Marker({
+                    position: { lat: location.lat, lng: location.lng },
+                    map: map,
+                    title: location.title,
+                    icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'  // Custom red marker
+                });
+            });
+        }
+    </script>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -86,8 +123,8 @@
                     <div class="navbar-nav mx-auto py-0">
                         <a href="index.html" class="nav-item nav-link">Home</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="service.html" class="nav-item nav-link active">Service</a>
-                        <a href="service-areas.html" class="nav-item nav-link">Service Areas</a>
+                        <a href="service.html" class="nav-item nav-link">Service</a>
+                        <a href="service-areas.html" class="nav-item nav-link active">Service Areas</a>
                         <a href="fleet-types.html" class="nav-item nav-link">Fleet Types</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
@@ -107,93 +144,38 @@
     <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb">
         <div class="container text-center py-5" style="max-width: 900px;">
-            <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Our Services</h4>
+            <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">Our Service Areas</h4>
             <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                 <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                <li class="breadcrumb-item active text-primary">Service</li>
+                <li class="breadcrumb-item active text-primary">Blog & News</li>
             </ol>
         </div>
     </div>
     <!-- Header End -->
 
-    <!-- Services Start -->
-    <div class="container-fluid service py-5">
+    <!-- Blog Start -->
+    <div class="container-fluid blog py-5">
         <div class="container py-5">
             <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
-                <h1 class="display-5 text-capitalize mb-3">Our <span class="text-primary">Services</span></h1>
-                <p class="mb-0">New Age Coach manages charter bus trips for companies and social
-                    excursions. New Age Coach is the dependable option for affordable charter bus rentals. With
-                    over 20 years of experience, we can provide seamless group travel for all types of events.
-
-                    Our expertise lies in efficiently organizing reliable ground transportation. We ensure peace of mind
-                    for our customers. Consider New Age Coach your trusted partner during your travels. Call us
-                    at 413-391-0518 to get started with a quote!
+                <h1 class="display-5 text-capitalize mb-3">Our<span class="text-primary"> Service Areas</span></h1>
+                <p class="mb-0">Enjoy our useful guides on some of our popular cities. If you don’t see your city on the
+                    list, don’t worry! We can pick you up and take you anywhere in USA.
                 </p>
             </div>
             <div class="row g-4">
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item p-4">
-                        <div class="service-icon mb-4">
-                            <i class="fa fa-phone-alt fa-2x"></i>
-                        </div>
-                        <h5 class="mb-3">Phone Reservation</h5>
-                        <p class="mb-0">Our team is ready to assist you with scheduling, inquiries, and personalized
-                            travel solutions.</p>
-                    </div>
+
+                <div class="col-12">
+
+                    <body onload="initMap()">
+                        <div id="map" style="height: 450px; width: 100%;"></div>
+                    </body>
                 </div>
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item p-4">
-                        <div class="service-icon mb-4">
-                            <i class="fa fa-money-bill-alt fa-2x"></i>
-                        </div>
-                        <h5 class="mb-3">Special Rates</h5>
-                        <p class="mb-0">We offer competitive pricing and exclusive discounts to make group travel
-                            affordable and accessible.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item p-4">
-                        <div class="service-icon mb-4">
-                            <i class="fa fa-road fa-2x"></i>
-                        </div>
-                        <h5 class="mb-3">One Way Rental</h5>
-                        <p class="mb-0">Whether you're heading to a special event or need transport to a new city, we
-                            provide comfortable and reliable travel with no return booking required.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item p-4">
-                        <div class="service-icon mb-4">
-                            <i class="fa fa-users fa-2x"></i>
-                        </div>
-                        <h5 class="mb-3">Corporate Outings</h5>
-                        <p class="mb-0">We provide comfortable, punctual, and professional charter bus services that ensure a smooth and enjoyable ride for your employees and guests.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="service-item p-4">
-                        <div class="service-icon mb-4">
-                            <i class="fa fa-city fa-2x"></i>
-                        </div>
-                        <h5 class="mb-3">City to City</h5>
-                        <p class="mb-0">Whether for business, leisure, or group outings, we ensure safe and efficient
-                            transportation between destinations.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="service-item p-4">
-                        <div class="service-icon mb-4">
-                            <i class="fa fa-bus fa-2x"></i>
-                        </div>
-                        <h5 class="mb-3">Sport Competitions</h5>
-                        <p class="mb-0">We offer reliable, safe, and spacious transportation that accommodates your team, coaches, and equipment.</p>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
-    <!-- Services End -->
+    <!-- Blog End -->
 
     <!-- Fact Counter -->
     <div class="container-fluid counter py-5">
@@ -252,86 +234,9 @@
     </div>
     <!-- Fact Counter -->
 
-    <!-- Testimonial Start -->
-    <!-- <div class="container-fluid testimonial py-5">
-            <div class="container py-5">
-                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
-                    <h1 class="display-5 text-capitalize mb-3">Our Clients<span class="text-primary"> Reviews</span></h1>
-                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut amet nemo expedita asperiores commodi accusantium at cum harum, excepturi, quia tempora cupiditate! Adipisci facilis modi quisquam quia distinctio,
-                    </p>
-                </div>
-                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="testimonial-item">
-                        <div class="testimonial-quote"><i class="fa fa-quote-right fa-2x"></i>
-                        </div>
-                        <div class="testimonial-inner p-4">
-                            <img src="img/testimonial-1.jpg" class="img-fluid" alt="">
-                            <div class="ms-4">
-                                <h4>Person Name</h4>
-                                <p>Profession</p>
-                                <div class="d-flex text-primary">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star text-body"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="border-top rounded-bottom p-4">
-                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam soluta neque ab repudiandae reprehenderit ipsum eos cumque esse repellendus impedit.</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-item">
-                        <div class="testimonial-quote"><i class="fa fa-quote-right fa-2x"></i>
-                        </div>
-                        <div class="testimonial-inner p-4">
-                            <img src="img/testimonial-2.jpg" class="img-fluid" alt="">
-                            <div class="ms-4">
-                                <h4>Person Name</h4>
-                                <p>Profession</p>
-                                <div class="d-flex text-primary">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star text-body"></i>
-                                    <i class="fas fa-star text-body"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="border-top rounded-bottom p-4">
-                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam soluta neque ab repudiandae reprehenderit ipsum eos cumque esse repellendus impedit.</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-item">
-                        <div class="testimonial-quote"><i class="fa fa-quote-right fa-2x"></i>
-                        </div>
-                        <div class="testimonial-inner p-4">
-                            <img src="img/testimonial-3.jpg" class="img-fluid" alt="">
-                            <div class="ms-4">
-                                <h4>Person Name</h4>
-                                <p>Profession</p>
-                                <div class="d-flex text-primary">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star text-body"></i>
-                                    <i class="fas fa-star text-body"></i>
-                                    <i class="fas fa-star text-body"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="border-top rounded-bottom p-4">
-                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam soluta neque ab repudiandae reprehenderit ipsum eos cumque esse repellendus impedit.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-    <!-- Testimonial End -->
-
     <!-- Banner Start -->
-    <div class="container-fluid banner pb-5 wow zoomInDown" data-wow-delay="0.1s">
-        <div class="container pb-5">
+    <div class="container-fluid banner py-5 wow zoomInDown" data-wow-delay="0.1s">
+        <div class="container py-5">
             <div class="banner-item rounded">
                 <img src="img/banner-1.jpg" class="img-fluid rounded w-100" alt="">
                 <div class="banner-content">
@@ -399,6 +304,7 @@
                         <a href="mailto:newagecoach832@gmail.com"><i class="fas fa-envelope me-2"></i>
                             newagecoach832@gmail.com</a>
                         <a href="tel:+1 413-391-0518"><i class="fas fa-phone me-2"></i>+1 413-391-0518</a>
+                        <!-- <a href="tel:+012 345 67890" class="mb-3"><i class="fas fa-print me-2"></i> +012 345 67890</a> -->
                         <div class="d-flex">
                             <a class="btn btn-secondary btn-md-square rounded-circle me-3" href=""><i
                                     class="fab fa-facebook-f text-white"></i></a>
